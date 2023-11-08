@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from sender import sender
 
 app = Flask(__name__)
@@ -54,6 +54,7 @@ def contacto():
         phone = request.form.get("phone")
         print(name, email, message, phone)
         sender.send(name=name, mail=email, body=message, phone=phone)
+        return redirect(url_for("home"))
 
     return render_template("contact.html", tipo=tipo, clase1=clase_1, clase2=clase_2, clase3=clase_3, clase4=clase_4, clase5=clase_5)
 
