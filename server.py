@@ -2,9 +2,7 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-@app.route("/home.html")
-def main():
-    return render_template("index.html")
+
 
 @app.route("/home/<tipo>.html")
 def tipo(tipo):
