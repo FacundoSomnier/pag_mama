@@ -1,8 +1,8 @@
 import smtplib
 import os
 
-my_gmail = os.environ.get("GMAIL")
-password_g = os.environ.get("GMAILPASS")
+my_gmail = os.getenv("GMAIL")
+password_g = os.getenv("GMAILPASS")
 
 class sender:
     def send(name, mail, body, phone):
@@ -11,6 +11,6 @@ class sender:
             connection.login(user=my_gmail, password=password_g)
             connection.sendmail(
                 from_addr=my_gmail,
-                to_addrs=os.environ.get("TOMAIL"),
+                to_addrs= os.getenv("TOMAIL"),
                 msg=f"Subject:Consulta Inmobiliaria\n\nNombre: {name}\nEmail: {mail}\nTelefono: {phone}\nMensaje: \n{body}"
             )
