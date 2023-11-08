@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from sender import sender
 
 app = Flask(__name__)
 
@@ -43,9 +44,17 @@ def plantilla(tipo, clase):
     activar_menu(tipo)
     return render_template("plantillaProp.html", tipo=tipo, clase1=clase_1, clase2=clase_2, clase3=clase_3, clase4=clase_4, clase5=clase_5)
 
-@app.route("/contacto")
+@app.route("/contacto", methods=["POST", "GET"])
 def contacto():
     activar_menu("contacto")
+    if request.method == "POST":
+        name = request.form.get("name")
+        email = request.form.get("email")
+        message = request.form.get("comment")
+        phone = request.form.get("phone")
+        print(name, email, message, phone)
+        sender.send(name=name, mail=email, body=message, phone=phone)
+
     return render_template("contact.html", tipo=tipo, clase1=clase_1, clase2=clase_2, clase3=clase_3, clase4=clase_4, clase5=clase_5)
 
 @app.route("/zonas")
