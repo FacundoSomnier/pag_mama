@@ -1,0 +1,44 @@
+{% include "header.html" %}
+
+{% block styles %}
+<style>
+  #comments {
+    color: black;
+  }
+  .overlay {
+      padding: 20px;
+    }
+</style>
+{% endblock %}
+
+<div class="hoc clear" >
+  <main class="hoc container clear">
+    <div class="overlay">
+
+        <div id="comments">
+          <h2>Dejanos tus consultas</h2>
+          <form action="#" method="post">
+            <div class="one_third first">
+              <label for="name">Nombre <span>*</span></label>
+              <input type="text" name="name" id="name" value="" size="22" required>
+            </div>
+            <div class="one_third">
+              <label for="email">Mail <span>*</span></label>
+              <input type="email" name="email" id="email" value="" size="22" required>
+            </div>
+            <div class="block clear">
+              <label for="comment">Tu mensaje</label>
+              <textarea name="comment" id="comment" cols="25" rows="10"></textarea>
+            </div>
+            <div>
+              <input type="submit" name="submit" value="Enviar" >
+              &nbsp;
+              <input type="reset" name="reset" value="Borrar">
+            </div>
+          </form>
+        </div>
+      </div>
+
+  </main>
+</div>
+{% include "footer.html" %}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Carvajal Propiedades</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="/static/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<link href="static/favicon.ico" rel="icon">
+{% block styles %}
+{% endblock %}
+</head>
+<body id="top">
+
+<div class="wrapper row0">
+  <div id="topbar" class="hoc clear">
+    <div class="fl_left">
+
+      <ul class="nospace">
+        <li><i class="fas fa-phone rgtspace-5"></i> +54 (341) 625 3337</li>
+        <li><i class="far fa-envelope rgtspace-5"></i>karinacarvajalpropiedades@gmail.com</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- Top Background Image Wrapper -->
+<div class="bgded" style="background-image:url('/static/images/background.jpg');">
+
+  <div class="wrapper row1">
+    <header id="header" class="hoc clear">
+      <div id="logo" class="fl_left">
+        <!-- ################################################################################################ -->
+        <h1><a href="index.html">Carvajal Propiedades</a></h1>
+        <!-- ################################################################################################ -->
+      </div>
+      <nav id="mainav" class="fl_right">
+        <!-- ################################################################################################ -->
+        <ul class="clear">
+          <li class={{clase1}}><a href="{{url_for('home')}}">Home</a></li>
+          <li class={{clase2}}><a class="drop" href="{{url_for('tipo', tipo='ventas')}}">Ventas</a>
+            <ul>
+              <li><a href="{{url_for('plantilla', tipo='venta', clase='departamento')}}">Departamento</a></li>
+              <li><a href="{{url_for('plantilla', tipo='venta', clase='casa')}}">Casa</a></li>
+              <li><a href="{{url_for('plantilla', tipo='venta', clase='terreno')}}">Terreno</a></li>
+              <li><a href="{{url_for('plantilla', tipo='venta', clase='cochera')}}">Cochera</a></li>
+              <li><a href="{{url_for('plantilla', tipo='venta', clase='todos')}}">Todos</a></li>
+            </ul>
+          </li>
+          <li class={{clase3}}><a class="drop" href="{{url_for('tipo', tipo='alquileres')}}">Alquileres</a>
+            <ul>
+              <li><a href="{{url_for('plantilla', tipo='alquileres', clase='departamento')}}">Departamento</a></li>
+              <li><a href="{{url_for('plantilla', tipo='alquileres', clase='casa')}}">Casa</a></li>
+              <li><a href="{{url_for('plantilla', tipo='alquileres', clase='terreno')}}">Terreno</a></li>
+              <li><a href="{{url_for('plantilla', tipo='alquileres', clase='cochera')}}">Cochera</a></li>
+              <li><a href="{{url_for('plantilla', tipo='alquileres', clase='todos')}}">Todos</a></li>
+            </ul>
+          </li>
+          <li class={{clase4}}><a href="{{url_for('tipo', tipo='zonas')}}">Zonas</a></li>
+          <li class={{clase5}}><a href="{{url_for('contacto', tipo='contacto')}}">Contacto</a></li>
+        </ul>
+        <!-- ################################################################################################ -->
+      </nav>
+    </header>
+  </div>
