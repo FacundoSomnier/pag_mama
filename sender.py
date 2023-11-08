@@ -6,6 +6,7 @@ password_g = os.getenv("GMAILPASS")
 
 class sender:
     def send(name, mail, body, phone):
+        print(os.getenv("GMAIL"), os.getenv("GMAILPASS"), os.getenv("TOMAIL"))
         with smtplib.SMTP("smtp.gmail.com") as connection:
             connection.starttls()
             connection.login(user=my_gmail, password=password_g)
