@@ -10,5 +10,3 @@ WTForms
 SQLAlchemy
 gunicorn
 psycopg2-binary
-smtplib
-os
