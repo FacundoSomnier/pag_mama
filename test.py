@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 from sender import sender
 
 app = Flask(__name__)
+
 
 def activar_menu(tipo):
     global clase_1, clase_2, clase_3, clase_4, clase_5
@@ -29,6 +30,8 @@ def activar_menu(tipo):
         clase_3 = None
         clase_4 = None
         clase_5 = 'active'
+
+
 @app.route("/")
 def home():
     return render_template("index.html", clase1='active')
@@ -39,10 +42,12 @@ def tipo(tipo):
     activar_menu(tipo)
     return render_template("plantillaV_A.html", tipo=tipo, clase1=clase_1, clase2=clase_2, clase3=clase_3, clase4=clase_4, clase5=clase_5)
 
+
 @app.route("/<tipo>/<clase>")
 def plantilla(tipo, clase):
     activar_menu(tipo)
     return render_template("plantillaProp.html", tipo=tipo, clase1=clase_1, clase2=clase_2, clase3=clase_3, clase4=clase_4, clase5=clase_5)
+
 
 @app.route("/contacto", methods=["POST", "GET"])
 def contacto():
@@ -56,6 +61,7 @@ def contacto():
         sender.send(name=name, mail=email, body=message, phone=phone)
 
     return render_template("contact.html", tipo=tipo, clase1=clase_1, clase2=clase_2, clase3=clase_3, clase4=clase_4, clase5=clase_5)
+
 
 @app.route("/zonas")
 def zonas():
