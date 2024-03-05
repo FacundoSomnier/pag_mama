@@ -6,7 +6,7 @@
         <h3 class="heading">Karina Carvajal Propiedades</h3>
         <p>Somos una inmobiliaria en continuo crecimiento, nos distinguimos en la calidad de los servicios a nuestros
           clientes, ofreciendo servicios personalizados, con la transparencia, confianza y seriedad que se merecen.</p>
-        <footer><a class="btn" href="#">Catalogo</a></footer>
+        <footer><a class="btn" href="{{url_for('catalogo')}}">Catalogo</a></footer>
       </article>
       <!-- ################################################################################################ -->
     </div>
@@ -88,5 +88,48 @@
     <!-- / main body -->
     <div class="clear"></div>
   </main>
+</div>
+
+<div class="wrapper bgded overlay" style="background-image:url('/static/images/fondo personas.jpg');">
+  <section id="testimonials" class="hoc container clear">
+    <!-- ################################################################################################ -->
+    <div class="sectiontitle">
+      <p class="nospace font-xs"></p>
+      <p class="heading underline font-x2">Nuestro Equipo de trabajo</p>
+    </div>
+    <article class="btmspace-80">
+<!--      <blockquote>Pellentesque ipsum pede malesuada non vulputate at euismod et lorem nullam tincidunt urna eget nisl eleifend vulputate sed vitae risus sed enim fermentum venenatis sed augue eros tempor sit amet.</blockquote>-->
+      <figure class="clear btmspace-30"><img class="imgover" src="/static/images/foto mama.jpg" alt="" style="width:200px;">
+        <figcaption>
+          <h6 class="heading">Karina Carvajal</h6>
+          <em>CEO</em></figcaption>
+      </figure>
+      <p></p>
+      <div class="one_third first">
+      <figure class="clear center"><img class="imgover"  src="/static/images/Foto aylen 2.jpg" alt="" style="width:100px;">
+        <figcaption>
+          <h6 class="heading">Aylen Perez</h6>
+          <em>CM</em></figcaption>
+      </figure>
+      </div>
+      <div class="one_third">
+      <figure class="clear center"><img class="imgover"  src="/static/images/Foto aylen 2.jpg" alt="" style="width:100px;">
+        <figcaption>
+          <h6 class="heading">Aylen Perez</h6>
+          <em>CM</em></figcaption>
+      </figure>
+      </div>
+      <div class="one_third">
+      <figure class="clear center"><img class="imgover"  src="/static/images/Foto aylen 2.jpg" alt="" style="width:100px;">
+        <figcaption>
+          <h6 class="heading">Aylen Perez</h6>
+          <em>CM</em></figcaption>
+      </figure>
+      </div>
+
+    </article>
+<!--    <footer class="center"><a class="btn" href="#">More Testimonials</a></footer>-->
+    <!-- ################################################################################################ -->
+  </section>
 </div>
 {% include "footer.html" %}

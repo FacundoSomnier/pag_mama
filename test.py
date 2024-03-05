@@ -4,7 +4,11 @@ import os
 
 app = Flask(__name__)
 
-
+# clase_1 = None
+# clase_2 = None
+# clase_3 = None
+# clase_4 = None
+# clase_5 = None
 def activar_menu(tipo):
     global clase_1, clase_2, clase_3, clase_4, clase_5
     if tipo == "ventas":
@@ -38,16 +42,83 @@ def home():
     return render_template("index.html", clase1='active')
 
 
+@app.route("/catalogo")
+def catalogo():
+    return render_template("catalogo.html", tipo = 'catalogo')
+
+
 @app.route("/<tipo>")
 def tipo(tipo):
     activar_menu(tipo)
-    return render_template("plantillaV_A.html", tipo=tipo, clase1=clase_1, clase2=clase_2, clase3=clase_3, clase4=clase_4, clase5=clase_5)
+    return render_template("plantillaV_A.html", tipo=tipo, clase1=clase_1, clase2=clase_2, clase3=clase_3,
+                           clase4=clase_4, clase5=clase_5)
 
 
 @app.route("/<tipo>/<clase>")
 def plantilla(tipo, clase):
+
     activar_menu(tipo)
-    return render_template("plantillaProp.html", tipo=tipo, clase1=clase_1, clase2=clase_2, clase3=clase_3, clase4=clase_4, clase5=clase_5)
+
+    if tipo == 'ventas':
+
+        if clase == 'departamento':
+            return render_template("Venta_departamento.html", tipo=tipo, clase=clase, clase1=clase_1, clase2=clase_2,
+                                   clase3=clase_3, clase4=clase_4, clase5=clase_5)
+        elif clase == 'casa':
+            return render_template("plantillaProp.html", tipo=tipo, clase=clase, clase1=clase_1, clase2=clase_2,
+                                   clase3=clase_3, clase4=clase_4, clase5=clase_5)
+        elif clase == 'terreno':
+            return render_template("plantillaProp.html", tipo=tipo, clase=clase, clase1=clase_1, clase2=clase_2,
+                                   clase3=clase_3, clase4=clase_4, clase5=clase_5)
+        elif clase == 'cochera':
+            return render_template("plantillaProp.html", tipo=tipo, clase=clase, clase1=clase_1, clase2=clase_2,
+                                   clase3=clase_3, clase4=clase_4, clase5=clase_5)
+        else:
+            return render_template("plantillaProp.html", tipo=tipo, clase=clase, clase1=clase_1, clase2=clase_2,
+                                   clase3=clase_3, clase4=clase_4, clase5=clase_5)
+
+    elif tipo == 'alquileres':
+
+        if clase == 'departamento':
+            return render_template("plantillaProp.html", tipo=tipo, clase=clase, clase1=clase_1, clase2=clase_2,
+                                   clase3=clase_3, clase4=clase_4, clase5=clase_5)
+        elif clase == 'casa':
+            return render_template("plantillaProp.html", tipo=tipo, clase=clase, clase1=clase_1, clase2=clase_2,
+                                   clase3=clase_3, clase4=clase_4, clase5=clase_5)
+        elif clase == 'terreno':
+            return render_template("plantillaProp.html", tipo=tipo, clase=clase, clase1=clase_1, clase2=clase_2,
+                                   clase3=clase_3, clase4=clase_4, clase5=clase_5)
+        elif clase == 'cochera':
+            return render_template("plantillaProp.html", tipo=tipo, clase=clase, clase1=clase_1, clase2=clase_2,
+                                   clase3=clase_3, clase4=clase_4, clase5=clase_5)
+        else:
+            return render_template("plantillaProp.html", tipo=tipo, clase=clase, clase1=clase_1, clase2=clase_2,
+                                   clase3=clase_3, clase4=clase_4, clase5=clase_5)
+
+    elif tipo == 'zonas':
+
+        if clase == 'departamento':
+            return render_template("plantillaProp.html", tipo=tipo, clase=clase, clase1=clase_1, clase2=clase_2,
+                                   clase3=clase_3, clase4=clase_4, clase5=clase_5)
+        elif clase == 'casa':
+            return render_template("plantillaProp.html", tipo=tipo, clase=clase, clase1=clase_1, clase2=clase_2,
+                                   clase3=clase_3, clase4=clase_4, clase5=clase_5)
+        elif clase == 'terreno':
+            return render_template("plantillaProp.html", tipo=tipo, clase=clase, clase1=clase_1, clase2=clase_2,
+                                   clase3=clase_3, clase4=clase_4, clase5=clase_5)
+        elif clase == 'cochera':
+            return render_template("plantillaProp.html", tipo=tipo, clase=clase, clase1=clase_1, clase2=clase_2,
+                                   clase3=clase_3, clase4=clase_4, clase5=clase_5)
+        else:
+            return render_template("plantillaProp.html", tipo=tipo, clase=clase, clase1=clase_1, clase2=clase_2,
+                                   clase3=clase_3, clase4=clase_4, clase5=clase_5)
+
+
+@app.route('/propiedad/<propiedad>/')
+def propiedades(propiedad):
+    print(propiedad)
+    return render_template(f'/propiedades/{propiedad}.html', propiedad=propiedad)
+
 
 
 @app.route("/contacto", methods=["POST", "GET"])
@@ -73,19 +144,22 @@ def contacto():
             connection.sendmail(
                 from_addr=my_gmail,
                 to_addrs=os.getenv("TOMAIL"),
-                msg=f"Subject:Consulta Inmobiliaria\n\nNombre: {name}\nEmail: {email}\nTelefono: {phone}\nMensaje: \n{message}"
+                msg=f"Subject:Consulta Inmobiliaria\n\nNombre: {name}\nEmail: {email}\nTelefono: {phone}\nMensaje: "
+                    f"\n{message}"
             )
 
         return redirect(url_for("home"))
 
-    return render_template("contact.html", tipo=tipo, clase1=clase_1, clase2=clase_2, clase3=clase_3, clase4=clase_4, clase5=clase_5)
+    return render_template("contact.html", tipo=tipo, clase1=clase_1, clase2=clase_2, clase3=clase_3,
+                           clase4=clase_4, clase5=clase_5)
 
 
 @app.route("/zonas")
 def zonas():
     activar_menu("zonas")
-    return render_template("plantillaZonas.html", tipo=tipo, clase1=clase_1, clase2=clase_2, clase3=clase_3, clase4=clase_4, clase5=clase_5)
+    return render_template("plantillaZonas.html", tipo=tipo, clase1=clase_1, clase2=clase_2, clase3=clase_3,
+                           clase4=clase_4, clase5=clase_5)
 
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True, host='0.0.0.0', port=5000)
