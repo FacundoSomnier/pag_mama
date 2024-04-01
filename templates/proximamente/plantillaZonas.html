@@ -1,0 +1,44 @@
+{% include "header.html" %}
+    <div class="overlay">
+        <div id="breadcrumb" class="hoc clear">
+            <h6 class="heading">Zonas</h6>
+            <ul>
+                <li><a href=" {{url_for('home') }}">Home</a></li>
+                <li><a href="{{url_for('tipo', tipo='zonas')}}">zonas</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <div class="content">
+        <div id="gallery">
+            <figure>
+                <ul class="nospace clear">
+                    <li class="one_quarter first">
+                        <figure><a class="imgover" href="{{url_for('plantilla', tipo='zonas', clase='norte')}}"><img src="/static/images/9 de julio.jpg" alt=""></a>
+                        </figure>
+                    </li>
+                    <li class="one_quarter">
+                        <figure><a class="imgover" href="{{url_for('plantilla', tipo='zonas', clase='centro')}}"><img src="/static/images/9 de julio.jpg" alt=""></a>
+                        </figure>
+                    </li>
+                    <li class="one_quarter">
+                        <figure><a class="imgover" href="{{url_for('plantilla', tipo='zonas', clase='sur')}}"><img src="/static/images/9 de julio.jpg" alt=""></a>
+                        </figure>
+                    </li>
+                    <li class="one_quarter">
+                        <figure><a class="imgover" href="{{url_for('plantilla', tipo='zonas', clase='oeste')}}"><img src="/static/images/9 de julio.jpg" alt=""></a>
+                        </figure>
+                    </li>
+
+                </ul>
+            </figure>
+        </div>
+    </div>
+<!--    <div class="clear">-->
+<!--    </div>-->
+  </main>
+</div>
+
+{% include "footer.html" %}

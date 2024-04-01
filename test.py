@@ -44,13 +44,13 @@ def home():
 
 @app.route("/catalogo")
 def catalogo():
-    return render_template("catalogo.html", tipo = 'catalogo')
+    return render_template("/menus/catalogo.html", tipo = 'catalogo')
 
 
 @app.route("/<tipo>")
 def tipo(tipo):
     activar_menu(tipo)
-    return render_template("plantillaV_A.html", tipo=tipo, clase1=clase_1, clase2=clase_2, clase3=clase_3,
+    return render_template("/menus/plantillaV_A.html", tipo=tipo, clase1=clase_1, clase2=clase_2, clase3=clase_3,
                            clase4=clase_4, clase5=clase_5)
 
 
@@ -62,7 +62,7 @@ def plantilla(tipo, clase):
     if tipo == 'ventas':
 
         if clase == 'departamento':
-            return render_template("Venta_departamento.html", tipo=tipo, clase=clase, clase1=clase_1, clase2=clase_2,
+            return render_template("/galerias/venta/Venta_departamento.html", tipo=tipo, clase=clase, clase1=clase_1, clase2=clase_2,
                                    clase3=clase_3, clase4=clase_4, clase5=clase_5)
         elif clase == 'casa':
             return render_template("plantillaProp.html", tipo=tipo, clase=clase, clase1=clase_1, clase2=clase_2,
@@ -95,28 +95,35 @@ def plantilla(tipo, clase):
             return render_template("plantillaProp.html", tipo=tipo, clase=clase, clase1=clase_1, clase2=clase_2,
                                    clase3=clase_3, clase4=clase_4, clase5=clase_5)
 
-    elif tipo == 'zonas':
-
-        if clase == 'departamento':
-            return render_template("plantillaProp.html", tipo=tipo, clase=clase, clase1=clase_1, clase2=clase_2,
-                                   clase3=clase_3, clase4=clase_4, clase5=clase_5)
-        elif clase == 'casa':
-            return render_template("plantillaProp.html", tipo=tipo, clase=clase, clase1=clase_1, clase2=clase_2,
-                                   clase3=clase_3, clase4=clase_4, clase5=clase_5)
-        elif clase == 'terreno':
-            return render_template("plantillaProp.html", tipo=tipo, clase=clase, clase1=clase_1, clase2=clase_2,
-                                   clase3=clase_3, clase4=clase_4, clase5=clase_5)
-        elif clase == 'cochera':
-            return render_template("plantillaProp.html", tipo=tipo, clase=clase, clase1=clase_1, clase2=clase_2,
-                                   clase3=clase_3, clase4=clase_4, clase5=clase_5)
-        else:
-            return render_template("plantillaProp.html", tipo=tipo, clase=clase, clase1=clase_1, clase2=clase_2,
-                                   clase3=clase_3, clase4=clase_4, clase5=clase_5)
 
 
-@app.route('/propiedad/<propiedad>/')
+@app.route('/propiedad/<propiedad>/', methods=["POST", "GET"])
 def propiedades(propiedad):
     print(propiedad)
+
+    if request.method == "POST":
+        name = request.form.get("name")
+        email = request.form.get("email")
+        message = request.form.get("comment")
+        phone = request.form.get("phone")
+        print(name, email, message, phone)
+
+        my_gmail = os.getenv("GMAIL")
+        password_g = os.getenv("GMAILPASS")
+
+        print(os.getenv("GMAIL"), os.getenv("GMAILPASS"), os.getenv("TOMAIL"))
+
+        with smtplib.SMTP("smtp.gmail.com") as connection:
+            connection.starttls()
+            connection.login(user=my_gmail, password=password_g)
+            connection.sendmail(
+                from_addr=my_gmail,
+                to_addrs=os.getenv("TOMAIL"),
+                msg=f"Subject:Consulta Inmobiliaria: {propiedad}\n\nNombre: {name}\nEmail: {email}\nTelefono: {phone}\nMensaje: "
+                    f"\n{message}"
+            )
+
+        return redirect(url_for("home"))
     return render_template(f'/propiedades/{propiedad}.html', propiedad=propiedad)
 
 
@@ -150,15 +157,15 @@ def contacto():
 
         return redirect(url_for("home"))
 
-    return render_template("contact.html", tipo=tipo, clase1=clase_1, clase2=clase_2, clase3=clase_3,
+    return render_template("/menus/contact.html", tipo=tipo, clase1=clase_1, clase2=clase_2, clase3=clase_3,
                            clase4=clase_4, clase5=clase_5)
 
 
-@app.route("/zonas")
-def zonas():
-    activar_menu("zonas")
-    return render_template("plantillaZonas.html", tipo=tipo, clase1=clase_1, clase2=clase_2, clase3=clase_3,
-                           clase4=clase_4, clase5=clase_5)
+# @app.route("/zonas")
+# def zonas():
+#     activar_menu("zonas")
+#     return render_template("plantillaZonas.html", tipo=tipo, clase1=clase_1, clase2=clase_2, clase3=clase_3,
+#                            clase4=clase_4, clase5=clase_5)
 
 
 if __name__ == "__main__":
